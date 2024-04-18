@@ -1,7 +1,8 @@
-import React,{useState} from 'react';
-import Navbar from "../../components/Navbar/Navbar";
-import PasswordInput from '../../components/Navbar/Input/PasswordInput';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import PasswordInput from '../../components/Navbar/Input/PasswordInput';
+import Navbar from "../../components/Navbar/Navbar";
+import { validateEmail } from "../../utils/helper";
 
 const SignUp = () => {
     const [name,setName] = useState("");
@@ -11,8 +12,27 @@ const SignUp = () => {
 
     const handleSignUp = async (e) => {
         e.preventDefault();
+
+        if(!name) {
+            setError("Please enter your name.");
+            return;
+         }
+    
+        if(!validateEmail(email)){
+            setError("Please enter a valid email address.");
+            return;
+        }
+    
+        if(!password){
+            setError("Please enter a valid password.");
+            return;
+        }
+      
+        setError('')
+        //SignUp API call
     };
 
+   
   return (
     <>
      <Navbar />
@@ -43,6 +63,10 @@ const SignUp = () => {
                  />
 
                {error && <p className='text-red-500 text-xs pb-1'>{error}</p>}
+
+               <button type='submit' className='btn-primary'>
+                 Create Account
+               </button>
 
                <p className='text-sm text-center mt-4'>
                 Already have an account?{" "}
