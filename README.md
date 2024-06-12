@@ -1,3 +1,33 @@
+A Note App built using the MERN (MongoDB, Express.js, React.js, Node.js) stack. The app includes user authentication and authorization using JSON Web Tokens (JWT). The backend has been thoroughly tested using Postman.
+
+Features
+User Registration and Login
+JWT-based Authentication and Authorization
+CRUD operations for notes
+Responsive design using React.js
+
+
+Procedure
+
+git clone https://github.com/anoopghm/Notes-app.git
+cd note-app
+
+For backend
+cd backend
+
+npm install
+
+In .env file
+ACCESS TOKEN KEY = you can create it in any website you want
+
+For front end
+cd ../frontend
+npm install
+npm run dev
+
+
+
+
 LOGIN 
 
 ![login](https://github.com/anoopghm/Notes-app/assets/140532297/65e90e94-b3c1-4fbf-9164-784ed08075e3)
