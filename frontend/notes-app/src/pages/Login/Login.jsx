@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link ,useNavigate} from "react-router-dom";
 import PasswordInput from '../../components/Navbar/Input/PasswordInput';
 import Navbar from "../../components/Navbar/Navbar";
 import { validateEmail } from "../../utils/helper";
+import axiosInstance from '../../utils/axiosInstance';
 
 const Login = () => {
 
      const [email,setEmail]= useState("");
      const [password,setPassword] = useState("");
      const [error,setError] = useState (null);
+
+     const  navigate = useNavigate()
      
      const handleLogin = async (e) => {
         e.preventDefault();
@@ -25,6 +28,25 @@ const Login = () => {
       setError("")
 
       //Login API CALL
+      try{
+         const response = await axiosInstance.post("/login",{
+            email:email,
+            password: password,
+         });
+
+     // Handle successful login response
+     if(response.data && response.data.accessToken){
+        localStorage.setItem("token",response.data.accessToken);
+        navigate("/dashboard");
+     }
+      } catch(error) {
+          //Handling login error
+          if(error.response && error.response.data && error.response.data.message){
+            setError(error.response.data.message);
+          } else{
+            setError("An unexpected error occured. Please try again.");
+          }
+      }
      };
 
  return (
@@ -56,7 +78,7 @@ const Login = () => {
 
                     <p className = "text-sm text-center mt-4">
                        Not registered yet? {" "}
-                         <Link to = "/signup" className = "font-medium text-primary underline">
+                         <Link to = "/signUp" className = "font-medium text-primary underline">
                         Create an Account
                        </Link>
                     </p>
