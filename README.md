@@ -1,10 +1,12 @@
 A Note App built using the MERN (MongoDB, Express.js, React.js, Node.js) stack. The app includes user authentication and authorization using JSON Web Tokens (JWT). The backend has been thoroughly tested using Postman.
 
 Features
-User Registration and Login
-JWT-based Authentication and Authorization
-CRUD operations for notes
-Responsive design using React.js
+1. User Registration and Login
+
+2.JWT-based Authentication and Authorization
+
+3. CRUD operations for notes
+4. Responsive design using React.js
 
 
 Procedure
